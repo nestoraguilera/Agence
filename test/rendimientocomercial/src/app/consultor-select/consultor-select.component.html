@@ -1,0 +1,80 @@
+<div class="row">
+
+  <mat-card class="col-md-4 raised-block">
+    <mat-card-title>
+      <mat-icon>person_pin</mat-icon>Seleccione consultor(es)</mat-card-title>
+    <mat-card-content>
+      <div class="full-width text-center">
+        <mat-form-field>
+          <mat-select placeholder="Desde: mes" [(value)]=dateF.m>
+            <mat-option *ngFor="let m of months" [value]="m.id">{{ m.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Año" [(value)]=dateF.y>
+            <mat-option *ngFor="let y of years" [value]="y">{{ y }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-icon style="margin: 1em;padding:0%;">arrow_forward</mat-icon>
+        <mat-form-field>
+          <mat-select placeholder="Hasta: mes" [(value)]=dateT.m>
+            <mat-option *ngFor="let m of months" [value]="m.id">{{ m.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Año" [(value)]=dateT.y>
+            <mat-option *ngFor="let y of years" [value]="y">{{ y }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <mat-selection-list id="consultorList" [(ngModel)]="selectedIDs">
+        <mat-list-option *ngFor="let consultor of consultorList_data" [value]="consultor.id">
+          {{consultor.value}}
+        </mat-list-option>
+      </mat-selection-list>
+      <button [disabled]="!readyForLaunch()" mat-mini-fab title="Tabla" (click)="setView(1)">
+        <mat-icon>view_list</mat-icon>
+      </button>
+      <button [disabled]="!readyForLaunch()" mat-mini-fab title="Grafico" (click)="setView(2)">
+        <mat-icon>insert_chart</mat-icon>
+      </button>
+      <button [disabled]="!readyForLaunch()" mat-mini-fab title="Grafico" (click)="setView(3)">
+        <mat-icon>pie_chart</mat-icon>
+      </button>
+      <div style="width:100%;text-align:right">
+        <button *ngIf="selectedIDs.length" mat-mini-fab (click)="selectConsultor(false)" title="deseleccionar todos">
+          <mat-icon>check_box_outline_blank</mat-icon>
+        </button>
+        <button mat-mini-fab (click)="selectConsultor(true)" title="seleccionar todos">
+          <mat-icon>check_box</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="dataReport && activeView==1" class="col-md-7 raised-block">
+    <mat-icon>view_list</mat-icon>Reporte
+    <div *ngFor="let consultor of dataReport">
+      <app-consultor-informe01 [ConsultorInforme01]="consultor"></app-consultor-informe01>
+    </div>
+  </mat-card>
+
+  <mat-card *ngIf="activeView==2" class="col-md-7">
+    <mat-card-title>
+      <mat-icon>insert_chart</mat-icon>Grafico
+    </mat-card-title>
+    <mat-card-content>
+      <iframe class="chart_panel" [src]="barChartPanelUrl"></iframe>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="activeView==3" class="col-md-7">
+    <mat-card-title>
+      <mat-icon>pie_chart</mat-icon>Grafico de torta
+    </mat-card-title>
+    <mat-card-content>
+      <iframe class="chart_panel" [src]="pieChartPanelUrl"></iframe>
+    </mat-card-content>
+  </mat-card>
+
+</div>

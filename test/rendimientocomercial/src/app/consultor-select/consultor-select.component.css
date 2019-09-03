@@ -1,0 +1,28 @@
+#consultorList {
+    border: 3px solid lightgray;
+    overflow: auto;
+    max-height: 25em;
+}
+
+mat-card {
+    height: 600px;
+    overflow: auto;
+    margin-right: 5px;
+}
+
+mat-icon {
+    padding-right: 5px;
+}
+
+mat-form-field {
+    width: 4em;
+}
+
+tr {
+    vertical-align: top;
+}
+
+.chart_panel {
+    width: 620px;
+    height: 370px;
+}

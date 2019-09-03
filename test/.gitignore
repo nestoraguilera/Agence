@@ -1,0 +1,15 @@
+*.swp
+*.xml
+
+rendimientocomercial/dist
+rendimientocomercial/dist-server
+rendimientocomercial/tmp
+rendimientocomercial/out-tsc
+rendimientocomercial/node_modules
+
+rendimientocomercial-rest/dist
+rendimientocomercial-rest/dist-server
+rendimientocomercial-rest/tmp
+rendimientocomercial-rest/out-tsc
+rendimientocomercial-rest/node_modules
+

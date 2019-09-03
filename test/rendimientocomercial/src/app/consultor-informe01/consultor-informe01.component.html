@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-icon>person_pin</mat-icon>{{no_usuario}}
+  <mat-table [dataSource]="results">
+    <ng-container matColumnDef="Periodo">
+      <mat-header-cell *matHeaderCellDef>Periodo</mat-header-cell>
+      <mat-cell *matCellDef="let result">{{result.mm|monthName}} {{result.aaaa}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Neto">
+      <mat-header-cell style="text-align:center;" *matHeaderCellDef>Neto</mat-header-cell>
+      <mat-cell style="text-align:right;" *matCellDef="let result">{{result.ganancia_neta|currency}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Costo">
+      <mat-header-cell style="text-align:center;" *matHeaderCellDef>Costo</mat-header-cell>
+      <mat-cell style="text-align:right;" *matCellDef="let result">{{result.costo_fijo|currency}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Comision">
+      <mat-header-cell style="text-align:center;" *matHeaderCellDef>Comision</mat-header-cell>
+      <mat-cell style="text-align:right;" *matCellDef="let result">{{result.comision|currency}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Total">
+      <mat-header-cell style="text-align:center;" *matHeaderCellDef>Total</mat-header-cell>
+      <mat-cell style="text-align:right;" *matCellDef="let result">{{result.total|currency}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+  </mat-table>
+</mat-card>
